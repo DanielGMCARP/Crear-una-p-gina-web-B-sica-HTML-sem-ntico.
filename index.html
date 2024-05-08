@@ -26,6 +26,9 @@
                 <li><a href="#Demostracion" >Demostracion</a></li>
                 <li><a href="#Historia" >Historia</a></li>
                 <li><a href="#Crear Meme" >Crear meme</a></li>
+                <li><a href="#Adivinar Numero" >Adivinar Numero</a></li>
+                <li><a href="#Piedra, Papel o tijeras" >Piedra, Palel o Tijeras</a></li>
+
             </ul>
         </nav>
 
@@ -51,6 +54,7 @@
             </section>
         </main>
     </head>
+    <section id="Adivinar Numero">
     <body>
         <h1>Juego de Adivinar el Número</h1>
         <p>Estoy pensando en un número entre 1 y 100. ¡Adivina cuál es!</p>
@@ -59,25 +63,19 @@
         <p id="message"></p>
     
         <script>
-            // Generar un número aleatorio entre 1 y 100
             const randomNumber = Math.floor(Math.random() * 100) + 1;
     
-            // Obtener referencia al campo de texto y al mensaje
             const guessField = document.getElementById('guessField');
             const message = document.getElementById('message');
     
-            // Función para verificar el número ingresado por el usuario
             function checkGuess() {
-                // Obtener el valor ingresado por el usuario y convertirlo a número
                 const userGuess = parseInt(guessField.value);
     
-                // Comprobar si el número es válido
                 if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
                     message.textContent = 'Por favor, ingresa un número válido entre 1 y 100.';
                     return;
                 }
     
-                // Comprobar si el número coincide con el número aleatorio
                 if (userGuess === randomNumber) {
                     message.textContent = '¡Felicidades! ¡Adivinaste el número!';
                     message.style.color = 'green';
@@ -89,13 +87,62 @@
                     message.style.color = 'red';
                 }
     
-                // Limpiar el campo de texto
                 guessField.value = '';
             }
         </script>
     </body>
     </html>
-    
+</section>
+
+<section id="Piedra, Papel o tijeras">
+    <title>Piedra, Papel o Tijera</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .result {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Piedra, Papel o Tijera</h1>
+    <p>Selecciona tu opción:</p>
+    <button onclick="play('piedra')">Piedra</button>
+    <button onclick="play('papel')">Papel</button>
+    <button onclick="play('tijera')">Tijera</button>
+    <p class="result" id="result"></p>
+
+    <script>
+        function play(playerChoice) {
+            // Generar una elección aleatoria para la computadora
+            const choices = ['piedra', 'papel', 'tijera'];
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+            // Determinar el resultado del juego
+            let result;
+            if (playerChoice === computerChoice) {
+                result = '¡Empate!';
+            } else if (
+                (playerChoice === 'piedra' && computerChoice === 'tijera') ||
+                (playerChoice === 'papel' && computerChoice === 'piedra') ||
+                (playerChoice === 'tijera' && computerChoice === 'papel')
+            ) {
+                result = '¡Ganaste!';
+            } else {
+                result = '¡Perdiste!';
+            }
+
+            // Mostrar el resultado en la página
+            document.getElementById('result').textContent = `Elegiste ${playerChoice}. La computadora eligió ${computerChoice}. ${result}`;
+        }
+    </script>
+</body>
+</html>
+    </section>
+
         <footer>
             <h2>Autores</h2>
             <li><a href="https://www.instagram.com/danifouru" target ="_blank">José Daniel</a></li>
