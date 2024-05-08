@@ -50,7 +50,52 @@
                 <p>Ejemplo realizado por el artista premiado Jose Daniel</p>
             </section>
         </main>
-
+    </head>
+    <body>
+        <h1>Juego de Adivinar el Número</h1>
+        <p>Estoy pensando en un número entre 1 y 100. ¡Adivina cuál es!</p>
+        <input type="text" id="guessField">
+        <button onclick="checkGuess()">Adivinar</button>
+        <p id="message"></p>
+    
+        <script>
+            // Generar un número aleatorio entre 1 y 100
+            const randomNumber = Math.floor(Math.random() * 100) + 1;
+    
+            // Obtener referencia al campo de texto y al mensaje
+            const guessField = document.getElementById('guessField');
+            const message = document.getElementById('message');
+    
+            // Función para verificar el número ingresado por el usuario
+            function checkGuess() {
+                // Obtener el valor ingresado por el usuario y convertirlo a número
+                const userGuess = parseInt(guessField.value);
+    
+                // Comprobar si el número es válido
+                if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+                    message.textContent = 'Por favor, ingresa un número válido entre 1 y 100.';
+                    return;
+                }
+    
+                // Comprobar si el número coincide con el número aleatorio
+                if (userGuess === randomNumber) {
+                    message.textContent = '¡Felicidades! ¡Adivinaste el número!';
+                    message.style.color = 'green';
+                } else if (userGuess < randomNumber) {
+                    message.textContent = 'El número es demasiado bajo. Inténtalo de nuevo.';
+                    message.style.color = 'red';
+                } else {
+                    message.textContent = 'El número es demasiado alto. Inténtalo de nuevo.';
+                    message.style.color = 'red';
+                }
+    
+                // Limpiar el campo de texto
+                guessField.value = '';
+            }
+        </script>
+    </body>
+    </html>
+    
         <footer>
             <h2>Autores</h2>
             <li><a href="https://www.instagram.com/danifouru" target ="_blank">José Daniel</a></li>
@@ -59,11 +104,10 @@
             <p>Año: 2024</p>
             <p>Derechos de autor: Matias Seston</p>
         </footer>
-        <audio controls autoplay loop>
-            <source src="momo.mp3" type="audio/mp3">
-        </audio>
+        
     </div> <!-- Fin del contenedor principal -->
 
     <link rel="stylesheet" href="style.css">
 </body>
 </html>
+
